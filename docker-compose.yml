@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+    mysql:
+        image: "jeroenl/pimcore-mysql"
+
+    redis:
+        image: "jeroenl/pimcore-redis"
+
+    php:
+        image: "jeroenl/pimcore-php"
+        working_dir: '/pimcore'
+        volumes:
+            - '.:/pimcore:cached'
+        depends_on:
+            - 'mysql'
+            - 'redis'
+
+    httpd:
+        image: "jeroenl/pimcore-httpd"
+        volumes:
+            - '.:/pimcore:cached'
+        ports:
+            - '8080:80'
+        depends_on:
+            - 'php'

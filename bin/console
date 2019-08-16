@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+use Pimcore\Bootstrap;
+use Pimcore\Console\Application;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+(function () {
+    Bootstrap::setProjectRoot();
+    define('PIMCORE_CONSOLE', true);
+    $kernel = Bootstrap::startupCli();
+    $application = new Application($kernel);
+    $application->run();
+})();

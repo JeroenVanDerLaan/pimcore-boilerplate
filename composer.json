@@ -1,0 +1,36 @@
+{
+    "name": "jeroenvanderlaan/pimcore-boilerplate",
+    "description": "Light weight Pimcore boilerplate",
+    "type": "project",
+    "keywords": ["pimcore", "boilerplate", "skeleton", "minimal", "light weight"],
+    "homepage": "https://www.github.com/jeroenvanderlaan/pimcore-boilerplate",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [{
+        "name": "Jeroen van der Laan",
+        "email": "jeroenvanderlaan91@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php":"7.2" ,
+        "pimcore/pimcore": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": ["src/"],
+            "Pimcore\\Model\\DataObject\\": "var/classes/DataObject"
+        },
+        "classmap": ["app/AppKernel.php"]
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

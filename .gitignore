@@ -1,0 +1,6 @@
+/app/config/parameters.yml
+/app/config/local/
+/var/
+/vendor/
+/web/bundles/
+/web/var/

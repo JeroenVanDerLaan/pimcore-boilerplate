@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+docker-compose down --rmi 'all' --volumes --remove-orphans
+docker-compose up --detach
+docker-compose exec php sh -c 'mysql-poll'
+docker-compose exec php sh -c 'COMPOSER_MEMORY_LIMIT=-1 composer install --no-suggest --no-interaction --optimize-autoloader -v'
+docker-compose exec php sh -c 'pimcore-install'
