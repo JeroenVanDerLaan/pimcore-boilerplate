@@ -1,6 +1,13 @@
 /app/config/parameters.yml
-/app/config/local/
-/var/
+/app/config/local/*
+!/app/config/local/.gitkeep
+
+/var/*
+!/var/classes/
+/var/classes/DataObject/
+!/var/config/
+/var/config/*
+
 /vendor/
 /web/bundles/
 /web/var/

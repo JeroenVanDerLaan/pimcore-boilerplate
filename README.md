@@ -2,4 +2,6 @@
 
 Light weight Pimcore boilerplate.
 
-WIP
+```bash
+./bin/install
+````

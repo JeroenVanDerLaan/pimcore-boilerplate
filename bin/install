@@ -1,7 +1,33 @@
 #!/usr/bin/env sh
 
-docker-compose down --rmi 'all' --volumes --remove-orphans
-docker-compose up --detach
+docker-compose down
+
+docker-compose up --detach --build
+
 docker-compose exec php sh -c 'mysql-poll'
-docker-compose exec php sh -c 'COMPOSER_MEMORY_LIMIT=-1 composer install --no-suggest --no-interaction --optimize-autoloader -v'
-docker-compose exec php sh -c 'pimcore-install'
+
+docker-compose exec php sh -c '
+    COMPOSER_MEMORY_LIMIT=-1 \
+    composer install \
+    --no-scripts \
+    --no-suggest \
+    --no-interaction \
+    --optimize-autoloader \
+    --verbose'
+
+docker-compose exec php sh -c '
+    PIMCORE_INSTALL_ADMIN_USERNAME="$PIMCORE_USER" \
+    PIMCORE_INSTALL_ADMIN_PASSWORD="$PIMCORE_PASSWORD" \
+    PIMCORE_INSTALL_MYSQL_HOST_SOCKET="$MYSQL_HOST" \
+    PIMCORE_INSTALL_MYSQL_PORT="$MYSQL_PORT" \
+    PIMCORE_INSTALL_MYSQL_USERNAME="$MYSQL_USER" \
+    PIMCORE_INSTALL_MYSQL_PASSWORD="$MYSQL_PASSWORD" \
+    PIMCORE_INSTALL_MYSQL_DATABASE="$MYSQL_DATABASE" \
+    PIMCORE_INSTALL_SKIP_DATABASE_STRUCTURE="false" \
+    PIMCORE_INSTALL_SKIP_DATABASE_DATA="false" \
+    PIMCORE_INSTALL_SKIP_DATABASE_DATA_DUMP="false" \
+    ./vendor/bin/pimcore-install \
+    --ignore-existing-config \
+    --no-interaction'
+
+docker-compose exec php sh -c 'composer run-script pimcore-scripts'

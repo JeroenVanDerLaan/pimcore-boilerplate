@@ -6,7 +6,7 @@ use Pimcore\Console\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-(function () {
+(static function () {
     Bootstrap::setProjectRoot();
     define('PIMCORE_CONSOLE', true);
     $kernel = Bootstrap::startupCli();

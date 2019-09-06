@@ -2,4 +2,4 @@ _main:
     resource: 'routing.yml'
 
 _pimcore_dev:
-    resource: "@PimcoreCoreBundle/Resources/config/routing_dev.yml"
+    resource: '@PimcoreCoreBundle/Resources/config/routing_dev.yml'

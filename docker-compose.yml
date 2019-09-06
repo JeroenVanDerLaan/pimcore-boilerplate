@@ -4,9 +4,15 @@ services:
 
     mysql:
         image: "jeroenl/pimcore-mysql"
+        volumes:
+            - 'pimcore-database:/var/lib/mysql'
+        ports:
+            - '3307:3306'
 
     redis:
         image: "jeroenl/pimcore-redis"
+        volumes:
+            - 'pimcore-redis:/data'
 
     php:
         image: "jeroenl/pimcore-php"
@@ -19,9 +25,14 @@ services:
 
     httpd:
         image: "jeroenl/pimcore-httpd"
+        working_dir: '/pimcore'
         volumes:
             - '.:/pimcore:cached'
         ports:
             - '8080:80'
         depends_on:
             - 'php'
+
+volumes:
+    pimcore-database:
+    pimcore-redis:

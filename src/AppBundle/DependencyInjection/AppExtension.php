@@ -29,8 +29,7 @@ class AppExtension extends Extension
     private function parseExternalConfiguration(array $config): array
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $config);
-        return $config;
+        return $this->processConfiguration($configuration, $config);
     }
 
     /**
@@ -40,8 +39,7 @@ class AppExtension extends Extension
     private function createServiceContainerFileLoader(ContainerBuilder $container): FileLoader
     {
         $locator = new FileLocator(__DIR__.'/../Resources/config');
-        $loader = new YamlFileLoader($container, $locator);
-        return $loader;
+        return new YamlFileLoader($container, $locator);
     }
 
     /**

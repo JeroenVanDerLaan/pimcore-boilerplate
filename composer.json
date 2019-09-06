@@ -9,19 +9,26 @@
     "prefer-stable": true,
     "authors": [{
         "name": "Jeroen van der Laan",
+        "homepage": "https://www.github.com/jeroenvanderlaan",
         "email": "jeroenvanderlaan91@gmail.com",
         "role": "Developer"
     }],
     "require": {
-        "php":"7.2" ,
-        "pimcore/pimcore": "^6.0"
+        "php":">=7.2" ,
+        "pimcore/pimcore": "^6.2"
     },
     "autoload": {
         "psr-4": {
-            "": ["src/"],
+            "AppBundle\\": "src/AppBundle",
             "Pimcore\\Model\\DataObject\\": "var/classes/DataObject"
         },
         "classmap": ["app/AppKernel.php"]
+    },
+    "scripts": {
+        "pimcore-scripts": [
+            "Pimcore\\Composer::clearCache",
+            "Pimcore\\Composer::installAssets"
+        ]
     },
     "config": {
         "platform": {
@@ -32,5 +39,13 @@
         },
         "optimize-autoloader": true,
         "sort-packages": true
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
+        "symfony-assets-install": "relative"
     }
 }
