@@ -1,3 +1,5 @@
+/.idea
+
 /app/config/parameters.yml
 /app/config/local/*
 !/app/config/local/.gitkeep

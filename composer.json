@@ -41,6 +41,11 @@
         "sort-packages": true
     },
     "extra": {
+        "bin-dir": "bin",
+        "config-dir": "app/config",
+        "src-dir": "src",
+        "var-dir": "var",
+        "public-dir": "web",
         "symfony-app-dir": "app",
         "symfony-bin-dir": "bin",
         "symfony-var-dir": "var",
